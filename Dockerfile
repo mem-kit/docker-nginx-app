@@ -19,8 +19,11 @@ RUN apt-get update  \
 
 # Set python3.12 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
+# Copy application files
 COPY api.py requirements.txt start.sh ./
-
-RUN pip install -r requirements.txt && chmod +x /start.sh
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+# Install Python dependencies and make start.sh executable
+RUN pip install -r requirements.txt && chmod +x start.sh
 EXPOSE 8880
-ENTRYPOINT ["/usr/bin/tini", "--", "/start.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "./start.sh"]
