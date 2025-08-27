@@ -1,8 +1,10 @@
 # docker-nginx-app
 
-If the app doesn't have the context-path and it is difficult to update/modify this app, we can use the nginx to redirect the requests into app root-path
+When we deploy the docker image into Azure AKS with sharing ingress and DNS domain, we need to use the sub-path or context-path.
 
-In this case, we have a demo application with root path '/' in it, which like this
+If the app doesn't have the context-path and it is difficult to update/modify this app, we can use the nginx to redirect the requests into app root-path.
+
+In this example, we have a demo application with root path '/' in it, which like this
 
  - http://127.0.0.1:7860
 
